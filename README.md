@@ -24,14 +24,14 @@ This project collects analog data from three channels using the ADS1256 ADC conn
 4. **Clone this repository** to your Raspberry Pi:
     ```bash
     git clone https://github.com/AleReb/ADS1256testspeed.git
-    cd adc-data-collection
+    cd ADS1256testspeed
     ```
 
 ## Usage
 
 1. **Run the script** to start collecting data:
     ```bash
-    python adc_data_collection.py
+    python test.py
     ```
 
 2. **The script will collect data from three channels** for a duration of approximately 10 minutes (500 samples per second for 600 seconds).
@@ -46,7 +46,7 @@ This project collects analog data from three channels using the ADS1256 ADC conn
 
 ## Script Explanation
 
-The `adc_data_collection.py` script performs the following steps:
+The `test.py` script performs the following steps:
 
 1. Initializes the ADS1256 ADC module.
 2. Sets the number of samples to be collected (500 samples per second for 600 seconds).
