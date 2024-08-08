@@ -19,11 +19,11 @@ This project collects analog data from three channels using the ADS1256 ADC conn
     pip install RPi.GPIO
     ```
 
-3. **Download the ADS1256 library** from its [repository]([https://github.com/your-repository/ADS1256](https://github.com/AleReb/ADS1256testspeed)).
+3. **Download the ADS1256 library** from its [repository]([https://github.com/AleReb/ADS1256testspeed](https://github.com/AleReb/ADS1256testspeed)).
 
 4. **Clone this repository** to your Raspberry Pi:
     ```bash
-    git clone https://github.com/your-repository/adc-data-collection.git
+    git clone https://github.com/AleReb/ADS1256testspeed.git
     cd adc-data-collection
     ```
 
