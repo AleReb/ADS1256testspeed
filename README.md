@@ -75,4 +75,7 @@ El script incluye un bloque try-except para manejar cualquier excepción que pue
 ## Ejemplo de Salida
 
 Después de ejecutar el script, deberías ver una salida similar a esta:
-
+Datos recolectados hasta ahora: 6000
+Datos guardados en canales_0_1_2_3_4_5_prueba_20240809_221950.csv
+Recoleccion completada en 3600.00 segundos
+Total de muestras recolectadas: 72000
