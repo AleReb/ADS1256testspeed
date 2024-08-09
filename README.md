@@ -16,7 +16,11 @@ This project collects analog data from three channels using the ADS1256 ADC conn
 
 2. **Install the necessary Python libraries** if not already installed:
     ```bash
-    pip install RPi.GPIO
+    sudo apt-get update
+    sudo apt-get install ttf-wqy-zenhei
+    sudo apt-get install python-pip
+    sudo pip install RPi.GPIO
+    sudo pip install spidev
     ```
 
 3. **Download the ADS1256 library** from its [repository]([https://github.com/AleReb/ADS1256testspeed](https://github.com/AleReb/ADS1256testspeed)).
@@ -24,14 +28,14 @@ This project collects analog data from three channels using the ADS1256 ADC conn
 4. **Clone this repository** to your Raspberry Pi:
     ```bash
     git clone https://github.com/AleReb/ADS1256testspeed.git
-    cd ADS1256testspeed
+    cd ADS1256testspeed/PYtest
     ```
 
 ## Usage
 
 1. **Run the script** to start collecting data:
     ```bash
-    python test.py
+    sudo python prueba1.py
     ```
 
 2. **The script will collect data from three channels** for a duration of approximately 10 minutes (500 samples per second for 600 seconds).
