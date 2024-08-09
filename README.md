@@ -1,67 +1,78 @@
+# Vamos a crear un archivo README.md con el contenido generado.
+readme_content = """
 # ADC Data Collection with Raspberry Pi
 
-This project collects analog data from three channels using the ADS1256 ADC connected to a Raspberry Pi. The collected data is then saved into a CSV file for further analysis.
+Este proyecto recoge datos analógicos de varios canales utilizando el ADC ADS1256 conectado a un Raspberry Pi. Los datos recopilados se guardan en un archivo CSV para su posterior análisis. El script ofrece opciones para configurar la tasa de muestreo, los canales a medir y la duración de la recolección de datos. También proporciona una opción para mostrar los datos en tiempo real.
 
-## Requirements
+## Requisitos
 
-- Raspberry Pi (any model with GPIO support)
-- ADS1256 ADC module
+- Raspberry Pi (cualquier modelo con soporte GPIO)
+- Módulo ADC ADS1256
 - Python 3
-- ADS1256 library
-- RPi.GPIO library
+- Biblioteca ADS1256
+- Biblioteca RPi.GPIO
 
-## Setup
+## Configuración
 
-1. **Connect the ADS1256 module to the Raspberry Pi** following the manufacturer's instructions.
+1. **Conecta el módulo ADS1256 al Raspberry Pi** siguiendo las instrucciones del fabricante.
 
-2. **Install the necessary Python libraries** if not already installed:
+2. **Instala las bibliotecas de Python necesarias** si no están ya instaladas:
     ```bash
     sudo apt-get update
-    sudo apt-get install ttf-wqy-zenhei
     sudo apt-get install python-pip
     sudo pip install RPi.GPIO
     sudo pip install spidev
     ```
 
-3. **Download the ADS1256 library** from its [repository]([https://github.com/AleReb/ADS1256testspeed](https://github.com/AleReb/ADS1256testspeed)).
+3. **Descarga la biblioteca ADS1256** desde su [repositorio](https://github.com/AleReb/ADS1256testspeed).
 
-4. **Clone this repository** to your Raspberry Pi:
+4. **Clona este repositorio** en tu Raspberry Pi:
     ```bash
     git clone https://github.com/AleReb/ADS1256testspeed.git
     cd ADS1256testspeed/PYtest
     ```
 
-## Usage
+## Uso
 
-1. **Run the script** to start collecting data:
+1. **Ejecuta el script** para comenzar a recopilar datos:
     ```bash
     sudo python prueba1.py
     ```
 
-2. **The script will collect data from three channels** for a duration of approximately 10 minutes (500 samples per second for 600 seconds).
+2. **El script te pedirá las siguientes configuraciones:**
+   - **Tasa de Muestreo (SPS):** Puedes elegir entre 50 SPS, 60 SPS, 100 SPS, 200 SPS o 500 SPS. El valor predeterminado es 200 SPS si no se selecciona ninguna opción.
+   - **Canales a Medir:** Ingresa los canales que deseas medir (por ejemplo, 0,1,2). Si no se ingresan canales, se usarán por defecto los canales 0 a 5.
+   - **Duración:** Ingresa el tiempo en minutos para la recolección de datos (por ejemplo, 1 para 1 minuto). Ingresa `0` para medición continua. El valor predeterminado es 1 minuto si no se ingresa un tiempo.
+   - **Nombre del Archivo de Salida:** Especifica un nombre para el archivo CSV de salida. Si se deja en blanco, se generará un nombre predeterminado basado en los canales usados y la fecha y hora actuales.
+   - **Visualización de Datos en Tiempo Real:** Puedes elegir mostrar los datos en tiempo real en la pantalla.
 
-3. **The collected data is saved into `adc_values.csv`** in the following format:
+3. **El script recopilará datos** según tus configuraciones y los guardará en un archivo CSV.
+
+4. **Los datos recopilados se guardan en un archivo CSV** con un nombre especificado por ti o generado por el script. El archivo CSV tendrá un formato similar a este:
     ```
-    Channel 0, Channel 1, Channel 2
-    value0_0, value0_1, value0_2
-    value1_0, value1_1, value1_2
+    Channel 0, Channel 1, Channel 2, Channel 3, Channel 4, Channel 5
+    value0_0, value0_1, value0_2, value0_3, value0_4, value0_5
+    value1_0, value1_1, value1_2, value1_3, value1_4, value1_5
     ...
     ```
 
-## Script Explanation
+5. **Después de completar la recolección de datos**, el script mostrará el tiempo total que tomó la recolección y el número total de muestras recopiladas.
 
-The `test.py` script performs the following steps:
+## Explicación del Script
 
-1. Initializes the ADS1256 ADC module.
-2. Sets the number of samples to be collected (500 samples per second for 600 seconds).
-3. Collects data from three channels and converts it to voltage values.
-4. Saves the collected data into a CSV file (`adc_values.csv`).
-5. Prints the total time taken for data collection and saving.
+El script `prueba1.py` realiza los siguientes pasos:
 
-## Error Handling
+1. **Inicialización:** El script inicializa el módulo ADC ADS1256 conectado al Raspberry Pi. Luego solicita al usuario varias configuraciones, incluyendo la tasa de muestreo, los canales a medir, la duración de la medición, el nombre del archivo de salida y si desea ver los datos en tiempo real.
 
-The script includes a try-except block to handle any exceptions that may occur during execution. If an error occurs, it cleans up the GPIO pins and prints the error message.
+2. **Recolección de Datos:** El script recopila datos de los canales seleccionados, convirtiendo los valores crudos del ADC en valores de voltaje. Periódicamente guarda los datos recopilados en un archivo CSV, asegurando que los datos no se pierdan durante sesiones largas de medición.
 
-## Example Output
+3. **Salida:** Los datos recopilados se guardan en un archivo CSV, que se puede analizar posteriormente. Al final de la medición, el script muestra la duración total y el número de muestras recolectadas.
 
-After running the script, you should see an output similar to this:
+## Manejo de Errores
+
+El script incluye un bloque try-except para manejar cualquier excepción que pueda ocurrir durante la ejecución. Si ocurre un error, limpia los pines GPIO y muestra el mensaje de error.
+
+## Ejemplo de Salida
+
+Después de ejecutar el script, deberías ver una salida similar a esta:
+
