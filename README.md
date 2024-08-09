@@ -1,5 +1,4 @@
-# Vamos a crear un archivo README.md con el contenido generado.
-readme_content = """
+
 # ADC Data Collection with Raspberry Pi
 
 Este proyecto recoge datos analógicos de varios canales utilizando el ADC ADS1256 conectado a un Raspberry Pi. Los datos recopilados se guardan en un archivo CSV para su posterior análisis. El script ofrece opciones para configurar la tasa de muestreo, los canales a medir y la duración de la recolección de datos. También proporciona una opción para mostrar los datos en tiempo real.
