@@ -1,7 +1,7 @@
 
-# ADC Data Collection with Raspberry Pi
+# Recolección de Datos ADC con Raspberry Pi 
 
-Este proyecto recoge datos analógicos de varios canales utilizando el ADC ADS1256 conectado a un Raspberry Pi. Los datos recopilados se guardan en un archivo CSV para su posterior análisis. El script ofrece opciones para configurar la tasa de muestreo, los canales a medir y la duración de la recolección de datos. También proporciona una opción para mostrar los datos en tiempo real.
+Este proyecto recoge datos analógicos de varios canales utilizando el módulo ADC ADS1256 conectado a un Raspberry Pi. Los datos recopilados se guardan en un archivo CSV para su posterior análisis. El script ofrece opciones para configurar la tasa de muestreo, los canales a medir y la duración de la recolección de datos. También proporciona una opción para mostrar los datos en tiempo real.
 
 ## Requisitos
 
@@ -35,7 +35,7 @@ Este proyecto recoge datos analógicos de varios canales utilizando el ADC ADS12
 
 1. **Ejecuta el script** para comenzar a recopilar datos:
     ```bash
-    sudo python prueba1.py
+    sudo python test3.py
     ```
 
 2. **El script te pedirá las siguientes configuraciones:**
@@ -49,32 +49,42 @@ Este proyecto recoge datos analógicos de varios canales utilizando el ADC ADS12
 
 4. **Los datos recopilados se guardan en un archivo CSV** con un nombre especificado por ti o generado por el script. El archivo CSV tendrá un formato similar a este:
     ```
-    Channel 0, Channel 1, Channel 2, Channel 3, Channel 4, Channel 5
-    value0_0, value0_1, value0_2, value0_3, value0_4, value0_5
-    value1_0, value1_1, value1_2, value1_3, value1_4, value1_5
+    T (s), Canal 0, Canal 1, Canal 2, T.real
+    0.000001, value0_0, value0_1, value0_2, 1626884190.123456
+    0.000002, value1_0, value1_1, value1_2, 1626884190.223456
     ...
     ```
 
 5. **Después de completar la recolección de datos**, el script mostrará el tiempo total que tomó la recolección y el número total de muestras recopiladas.
 
 ## Explicación del Script
-
-El script `prueba1.py` realiza los siguientes pasos:
+El script `test3.py` realiza los siguientes pasos:
 
 1. **Inicialización:** El script inicializa el módulo ADC ADS1256 conectado al Raspberry Pi. Luego solicita al usuario varias configuraciones, incluyendo la tasa de muestreo, los canales a medir, la duración de la medición, el nombre del archivo de salida y si desea ver los datos en tiempo real.
 
 2. **Recolección de Datos:** El script recopila datos de los canales seleccionados, convirtiendo los valores crudos del ADC en valores de voltaje. Periódicamente guarda los datos recopilados en un archivo CSV, asegurando que los datos no se pierdan durante sesiones largas de medición.
 
 3. **Salida:** Los datos recopilados se guardan en un archivo CSV, que se puede analizar posteriormente. Al final de la medición, el script muestra la duración total y el número de muestras recolectadas.
+## **Cambios Realizados**
+
+### **Modificaciones en ADS1xx.py:**
+
+- **Función `ADS1256_GetSelectedChannels`:** Se añadió una nueva función llamada `ADS1256_GetSelectedChannels` que permite leer únicamente los canales especificados en una lista. Esto mejora la eficiencia del código al evitar la lectura innecesaria de todos los canales cuando solo se necesitan algunos.
+
+### **Modificaciones en test3.py:**
+
+- **Selección Dinámica de Canales:** El script `test3.py` ahora utiliza la función `ADS1256_GetSelectedChannels` para leer únicamente los canales solicitados por el usuario, mejorando significativamente el rendimiento y reduciendo el tiempo de ejecución para configuraciones con pocos canales.
+- **Interfaz de Usuario Mejorada:** El script solicita al usuario que ingrese los canales a medir, lo que permite una mayor flexibilidad y personalización en la recolección de datos.
+- **Optimización de Escritura en CSV:** Los datos recolectados se almacenan en un buffer y se escriben en el archivo CSV en lotes, lo que reduce el impacto en el rendimiento y asegura que los datos no se pierdan en sesiones largas de medición.
 
 ## Manejo de Errores
 
 El script incluye un bloque try-except para manejar cualquier excepción que pueda ocurrir durante la ejecución. Si ocurre un error, limpia los pines GPIO y muestra el mensaje de error.
 
 ## Ejemplo de Salida
+Start time (hh:mm:ss.ss): 23:50:52
+End time (hh:mm:ss.ss): 23:55:52
+Samples: 150000 @ 500 sps in 5.0 mins
+Time difference elapsed: 300.001060 sec
+Time elapsed perf_counter: 300.001065 sec
 
-Después de ejecutar el script, deberías ver una salida similar a esta:
-Datos recolectados hasta ahora: 6000
-Datos guardados en canales_0_1_2_3_4_5_prueba_20240809_221950.csv
-Recoleccion completada en 3600.00 segundos
-Total de muestras recolectadas: 72000
