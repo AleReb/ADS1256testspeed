@@ -71,9 +71,9 @@ El script `test3.py` realiza los siguientes pasos:
 
 - **Función `ADS1256_GetSelectedChannels`:** Se añadió una nueva función llamada `ADS1256_GetSelectedChannels` que permite leer únicamente los canales especificados en una lista. Esto mejora la eficiencia del código al evitar la lectura innecesaria de todos los canales cuando solo se necesitan algunos.
 
-### **Modificaciones en test3.py:**
+### **Modificaciones en test4.py:**
 
-- **Selección Dinámica de Canales:** El script `test3.py` ahora utiliza la función `ADS1256_GetSelectedChannels` para leer únicamente los canales solicitados por el usuario, mejorando significativamente el rendimiento y reduciendo el tiempo de ejecución para configuraciones con pocos canales.
+- **Selección Dinámica de Canales:** El script `test4.py` ahora utiliza la función `ADS1256_GetSelectedChannels` para leer únicamente los canales solicitados por el usuario, mejorando significativamente el rendimiento y reduciendo el tiempo de ejecución para configuraciones con pocos canales, se mantiene el read all en ads1256.py para hacer purebas rapidas con el codigo main.py.
 - **Interfaz de Usuario Mejorada:** El script solicita al usuario que ingrese los canales a medir, lo que permite una mayor flexibilidad y personalización en la recolección de datos.
 - **Optimización de Escritura en CSV:** Los datos recolectados se almacenan en un buffer y se escriben en el archivo CSV en lotes, lo que reduce el impacto en el rendimiento y asegura que los datos no se pierdan en sesiones largas de medición.
 
