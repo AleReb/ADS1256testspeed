@@ -160,7 +160,6 @@ class ADS1256:
             print("ID Read failed   ")
             return -1
         self.ADS1256_ConfigADC(ADS1256_GAIN_E['ADS1256_GAIN_1'], ADS1256_DRATE_E['ADS1256_30000SPS'])
- 
         return 0
         
     def ADS1256_Read_ADC_Data(self):
@@ -199,6 +198,11 @@ class ADS1256:
             Value = self.ADS1256_Read_ADC_Data()
         return Value
         
+    def ADS1256_GetAll(self):
+        ADC_Value = [0,0,0,0,0,0,0,0]
+        for i in range(0,8,1):
+            ADC_Value[i] = self.ADS1256_GetChannalValue(i)
+        return ADC_Value
     def ADS1256_GetSelectedChannels(self, channels):
         """
         Read only the channels specified in the 'channels' list.
@@ -207,5 +211,6 @@ class ADS1256:
         for i, ch in enumerate(channels):
             ADC_Value[i] = self.ADS1256_GetChannalValue(ch)
         return ADC_Value
+
 ### END OF FILE ###
 
