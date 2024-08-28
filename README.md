@@ -35,11 +35,11 @@ Este proyecto recoge datos analógicos de varios canales utilizando el módulo A
 
 1. **Ejecuta el script** para comenzar a recopilar datos:
     ```bash
-    sudo python test3.py
+    sudo python test4.py
     ```
 
 2. **El script te pedirá las siguientes configuraciones:**
-   - **Tasa de Muestreo (SPS):** Puedes elegir entre 50 SPS, 60 SPS, 100 SPS, 200 SPS o 500 SPS. El valor predeterminado es 200 SPS si no se selecciona ninguna opción.
+   - **Tasa de Muestreo (SPS):** Puedes elegir entre 50 SPS, 60 SPS, 100 SPS, 200 SPS o 500 SPS EXPERIMENTAL 600. El valor predeterminado es 200 SPS si no se selecciona ninguna opción.
    - **Canales a Medir:** Ingresa los canales que deseas medir (por ejemplo, 0,1,2). Si no se ingresan canales, se usarán por defecto los canales 0 a 5.
    - **Duración:** Ingresa el tiempo en minutos para la recolección de datos (por ejemplo, 1 para 1 minuto). Ingresa `0` para medición continua. El valor predeterminado es 1 minuto si no se ingresa un tiempo.
    - **Nombre del Archivo de Salida:** Especifica un nombre para el archivo CSV de salida. Si se deja en blanco, se generará un nombre predeterminado basado en los canales usados y la fecha y hora actuales.
@@ -58,7 +58,7 @@ Este proyecto recoge datos analógicos de varios canales utilizando el módulo A
 5. **Después de completar la recolección de datos**, el script mostrará el tiempo total que tomó la recolección y el número total de muestras recopiladas.
 
 ## Explicación del Script
-El script `test3.py` realiza los siguientes pasos:
+El script `test4.py` realiza los siguientes pasos:
 
 1. **Inicialización:** El script inicializa el módulo ADC ADS1256 conectado al Raspberry Pi. Luego solicita al usuario varias configuraciones, incluyendo la tasa de muestreo, los canales a medir, la duración de la medición, el nombre del archivo de salida y si desea ver los datos en tiempo real.
 
